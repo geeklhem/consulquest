@@ -1,0 +1,39 @@
+<h1> Consultation </h1>
+{% if association %}
+   <p> Bonjour association {{association.name}} ! </p>
+{% else %}
+    <p>Vous n'êtes pas une association enregistrée. Vous pouvez tout de même voir la liste des questions mais vous pouvez en proposer.</p>
+{% endif %}
+
+<h2> Toutes les questions </h2>
+<ul>
+    {% for question in all_questions %}
+        <li><strong>{{ question.text }}</strong> question proposée par <em>{{question.author}}</em> le {{question.date}}</li>
+    {% endfor %}
+    </ul>
+
+{% if association %}
+
+<h2> Questions proposées par votre association </h2> 
+
+<ul>
+    {% for question in asso_questions %}
+        <li><strong>{{ question.text }}</strong> (Ajouté le {{question.date}}) <a href="#">[Supprimer]</a></li>
+    {% endfor %}
+</ul>
+
+<a href="#">Ajouter une question</a>
+
+<h2> Votre choix ordonné </h2> 
+
+<ol>
+    {% for question in asso_choix %}
+        <li>{{ question.text }}</li>
+    {% endfor %}
+</ol>
+
+
+<a href="#">Sauvegarder l'ordre</a>
+
+
+{% endif %}
